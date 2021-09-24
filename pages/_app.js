@@ -12,7 +12,7 @@ import "../styles/main.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.css";
 import "boxicons/css/boxicons.min.css";
-import "../adm/components/css/admin.css";
+import "nextjs-admin-table/dist/css/admin.css";
 import "../styles/quill.snow.css";
 
 

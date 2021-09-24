@@ -3,8 +3,6 @@ import { Fragment, useContext } from "react";
 import ListTable from "nextjs-admin-table/dist/ListTable";
 import AdminPage from "nextjs-admin-table/dist/adminPage";
 
-//import ListTable from "../../adm/components/ListTable";
-//import AdminPage from "../../adm/components/adminPage";
 import Head from "next/head";
 import axios from "axios";
 import UserContext from "../../store/user-context";

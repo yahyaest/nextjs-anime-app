@@ -1,6 +1,5 @@
 import AdminForm from "nextjs-admin-table/dist/adminForm";
 
-//import AdminForm from "./../../adm/components/adminForm";
 import Head from "next/head";
 
 function AdminFormPage(props) {
