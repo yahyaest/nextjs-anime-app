@@ -1,0 +1,21 @@
+@use 'custom';
+
+// Import Utils
+//@use "./utils/light-dark_mode";
+
+// Import components
+@use "./components/home";
+@use "./components/search";
+@use "./components/animeResultPage";
+@use "./components/animePage";
+@use "./components/login";
+@use "./components/discord";
+
+
+// Import Sections
+@use "./sections/navbar";
+@use "./sections/sidebar";
+@use "./sections/footer";
+@use "./sections/search-card";
+@use "./sections/saved-card";
+@use "./sections/comments-section";

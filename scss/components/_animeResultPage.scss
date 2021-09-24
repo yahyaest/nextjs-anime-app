@@ -1,0 +1,14 @@
+.anime-page {
+ margin: 0 auto;
+  margin-top: 5rem;
+  width: 80%;
+  position: relative;
+  left: 50px;
+  transition: all 0.5s ease;
+}
+
+.sidebar.sidebar__open ~ .anime-page {
+  //left: 200px;
+ width: calc(80% - 100px);
+transform: translateX(10%);
+}

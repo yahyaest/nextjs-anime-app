@@ -1,0 +1,38 @@
+@use '../custom' as *;
+
+// Gradient Mixin
+@mixin gradient {
+  background: linear-gradient(
+    to right,
+    rgba($primary-color, 1),
+    rgba($secondary-color, 0.95),
+    rgba($third-color, 0.9)
+  );
+}
+
+// Absolute Center
+@mixin absoluteCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Transition Property
+@mixin transitionProperty {
+  transition-duration: 1000ms;
+  transition-property: all;
+}
+
+// Transition Ease
+@mixin transition-ease {
+  transition: all 0.5s ease-in-out;
+}
+
+@function set-text-color($color) {
+  @if (lightness($color) > 40%) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}

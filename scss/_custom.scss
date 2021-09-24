@@ -1,0 +1,69 @@
+$primary-color: #e60e39;
+$secondary-color: #f86612;
+$third-color: #f8c009;
+
+$bot-color-1: #0d7c0a;
+$bot-color-2: #135b9e;
+$bot-color-3: #9c1d18;
+$bot-color-4: #b9a21f;
+$bot-color-5: #242724;
+
+
+$text-color: #292929;
+
+// White and Gray colors
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+
+// Import Bootsrap 5
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+.sidebar-resize1{
+transform:translateX(-10%)
+}
+
+.skeleton{
+ // opacity: 0.7;
+  animation: skeleton-loading 1s linear  infinite alternate;
+}
+
+.skeleton-text{
+  width:100%;
+  height:0.5rem;
+  margin-bottom:0.25rem;
+  border-radius:0.125rem;
+}
+
+@keyframes skeleton-loading {
+  0%{
+    background-color: hsl(200,20%,70%);
+  }
+
+    100%{
+    background-color: hsl(200,20%,95%);
+  }
+  
+}

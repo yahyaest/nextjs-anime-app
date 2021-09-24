@@ -1,0 +1,125 @@
+@use '../custom' as *;
+@use '../utils/mixins' as *;
+
+.home-page {
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+
+  section {
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+  }
+}
+
+.intro {
+  width: 100%;
+  height: 900px;
+  margin: 0 auto;
+  margin-top: 3.5rem;
+  background-image: url("../public/images/bg-2.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include media-breakpoint-down(sm) {
+    height: 400px;
+  }
+}
+
+.intro-content {
+  @include media-breakpoint-down(sm) {
+    h1 {
+      font-size: 1.25rem;
+    }
+    p {
+      font-size: 0.75rem;
+
+      a {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}
+
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.img1-overlay {
+  width: 100%;
+  height: 650px;
+  background: linear-gradient(to right, rgba(gray, 0.9), rgba(black, 0.3)),
+    url("../public/images/bg-3.jpg");
+  background-position: center center;
+  background-size: cover;
+
+  @include media-breakpoint-down(lg) {
+    height: 400px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    height: 250px;
+  }
+}
+
+.img2-overlay {
+  width: 100%;
+  height: 650px;
+  background: linear-gradient(to right, rgba(gray, 0.9), rgba(black, 0.3)),
+    url("../public/images/bg-4.jpg");
+  background-position: center center;
+  background-size: cover;
+
+  @include media-breakpoint-down(lg) {
+    height: 400px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    height: 250px;
+  }
+}
+
+.img3-overlay {
+  width: 100%;
+  height: 650px;
+  background: linear-gradient(to right, rgba(gray, 0.9), rgba(black, 0.3)),
+    url("../public/images/bg-5.jpg");
+  background-position: center center;
+  background-size: cover;
+
+  @include media-breakpoint-down(lg) {
+    height: 400px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    height: 250px;
+  }
+}
+
+.my__carousel_main {
+  div {
+    ol {
+      li {
+        background-color: darkgrey;
+        height: 10px;
+        width: 50px;
+        margin: 0 5px;
+        border-radius: 5px;
+        transition: all ease 0.5s;
+
+        &:hover {
+          background-color: gray;
+        }
+      }
+    }
+  }
+}
+
+.carousel-indicators .active {
+  opacity: 1;
+  background-color: white;
+}

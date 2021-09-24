@@ -1,0 +1,103 @@
+@use '../custom' as *;
+@use '../utils/mixins' as *;
+
+.bg {
+  background: #007bff;
+  background: linear-gradient(to right, #0062e6, #33aeff);
+}
+
+.card-img-left {
+  width: 45%;
+  /* Link to your background image using in the property below! */
+  background: scroll center url("/images/login-bg.jpg");
+  background-size: cover;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+
+.btn-google {
+  color: white !important;
+  background-color: #ea4335 !important;
+}
+
+.btn-facebook {
+  color: white !important;
+  background-color: #3b5998 !important;
+}
+
+.btn-github {
+  color: white !important;
+  background-color: #161b22 !important;
+}
+
+.btn-discord {
+  margin: 0 15px;
+  padding: 7px 15px;
+  background-color: #5865f2 !important;
+  color: white !important;
+  border-radius: 5px;
+  transition: all 0.5s ease;
+  
+  &:hover{  background-color: #4857f8 !important;
+}
+}
+
+.btn-site {
+  margin: 0 15px;
+  padding: 7px 15px;
+  background-color: white !important;
+  border-radius: 5px;
+  transition: all 0.5s ease;
+  a {
+    text-decoration: none !important;  
+    color: black !important;
+  }
+
+  &:hover{  background-color: wheat !important;
+}
+}
+
+.btn-crimson {
+  color: white;
+  background-color: crimson;
+  @include media-breakpoint-down(sm) {
+    margin: 0 !important;
+  }
+}
+
+.card-login {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.form-floating {
+  .form-control {
+    height: 60px !important;
+    font-size: 1rem !important;
+  }
+}
+
+.not-found {
+  width: 60%;
+  height: 1000px;
+  margin: auto auto;
+  background-image: url("../public/images/404.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include media-breakpoint-down(md) {
+    width: 90%;
+    height: 800px;
+  }
+}
