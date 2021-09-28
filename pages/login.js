@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { getSession, signIn } from "next-auth/client";
@@ -101,6 +102,13 @@ function LoginPage() {
 
   return (
     <div className="container ">
+      <Head>
+        <title>Login</title>
+        <meta
+          name="description"
+          content="Login/Register Page..."
+        />
+      </Head>
       <div className="row">
         <div className="col-lg-10 col-xl-9 mx-auto">
           <div className="card-login flex-row my-5 border-0 shadow rounded-3 overflow-hidden ">
