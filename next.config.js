@@ -36,8 +36,10 @@ module.exports = (phase) => {
         GOOGLE_CLIENT_ID:
           "111284700249-rsk6ps62ndp0ql5koi6rkoijpf14d5kk.apps.googleusercontent.com",
         GOOGLE_CLIENT_SECRET: "NLgyP0_59rhyAzIb2Gi4Zl_x",
-        FACEBOOK_CLIENT_ID: "4494106827311978",
-        FACEBOOK_CLIENT_SECRET: "ee4f3297acf33e5540c9f9282e8b9a9f",
+        //FACEBOOK_CLIENT_ID: "4494106827311978",
+        //FACEBOOK_CLIENT_SECRET: "ee4f3297acf33e5540c9f9282e8b9a9f",
+        FACEBOOK_CLIENT_ID: "1163848264098065",
+        FACEBOOK_CLIENT_SECRET: "38aff095d144c3fe5ad049b7913965aa",
         GITHUB_CLIENT_ID: "ef0a3c9d6d81236bb7b9",
         GITHUB_CLIENT_SECRET: "bae7976880c2310e3cb3e15bb96ea88094ccb92e",
         DB_USERNAME: "yahya",
