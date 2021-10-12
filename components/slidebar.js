@@ -166,6 +166,16 @@ function Slidebar(props) {
           <span className="slidebar__tooltip">Discord</span>
         </li>
 
+          <li>
+          <Link href="/news">
+            <a>
+              <i className='bx bx-news'></i>
+              <span className="links_name">News</span>
+            </a>
+          </Link>
+          <span className="slidebar__tooltip">News</span>
+        </li>
+
         {session?.user && (
           <li className="profile">
             {userProfileDetails}

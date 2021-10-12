@@ -1,4 +1,4 @@
-@use 'custom';
+@use "custom";
 
 // Import Utils
 //@use "./utils/light-dark_mode";
@@ -10,7 +10,7 @@
 @use "./components/animePage";
 @use "./components/login";
 @use "./components/discord";
-
+@use "./components/news";
 
 // Import Sections
 @use "./sections/navbar";

@@ -1,0 +1,65 @@
+@use '../custom' as *;
+@use '../utils/mixins' as *;
+
+.news_component {
+   margin: 0 auto;
+  margin-top: 5rem;
+  position: relative;
+  top: 0;
+  left: 50px;
+  width: calc(95% - 50px);
+  transition: all 0.5s ease;
+}
+.sidebar.sidebar__open ~ .news_component {
+  left: 150px;
+  width: calc(90% - 100px);
+}
+
+.news_list{
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-around;
+}
+
+.news-card{
+ min-height: 300px !important;
+ min-width: 450px !important;
+ padding: 10px;
+ cursor:pointer;
+ transition: all 1s ease;
+
+ @include media-breakpoint-down(lg) {
+ min-width: 300px !important;
+  }
+
+  &:hover{
+      transform:scale(1.05);
+      border: 1px solid crimson;
+      border-radius: 10px;
+  }
+ 
+}
+.news-image-container{
+    display: flex !important;
+    justify-content: space-evenly !important;
+}
+.news-title{
+width: 70%;
+}
+
+.news-image-container .img{
+    width:100px;
+    height:100px;
+}
+.news-card p{
+    color: black;
+    margin: 10px 0px !important;
+}
+.provider-container{
+    display: flex;
+    justify-content: space-between;
+}
+.provider-name{
+    margin-left: 10px;
+}
+
