@@ -3,7 +3,8 @@ import multer from "multer";
 
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, process.cwd() + "/public/uploads/images/");
+    // callback(null, process.cwd() + "/public/uploads/images/");
+    callback(null, "./public/uploads/images/");
   },
   filename: function (req, file, callback) {
     callback(
