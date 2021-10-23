@@ -12,7 +12,8 @@ async function createUser(user, chatProfile) {
     })
     .then((data) => console.log("success add", user))
     .catch((error) => {
-      throw new Error(error || "Something went wrong!");
+      // throw new Error(error || "Something went wrong!");
+      console.log(error || "Something went wrong!");
     });
 
   await axios({
@@ -23,7 +24,8 @@ async function createUser(user, chatProfile) {
   })
     .then((data) => console.log("success add", chatProfile))
     .catch((error) => {
-      throw new Error(error || "Something went wrong!");
+      // throw new Error(error || "Something went wrong!");
+      console.log(error || "Something went wrong!");
     });
 }
 
@@ -93,6 +95,9 @@ function LoginPage() {
           chatProfile.append("avatar", imageFile);
 
           const result = await createUser(newUser, chatProfile);
+
+          router.replace("/");
+          toast.success("Successfully registered, you can login now");
         }
       } catch (error) {
         console.log(error);
@@ -104,10 +109,7 @@ function LoginPage() {
     <div className="container ">
       <Head>
         <title>Login</title>
-        <meta
-          name="description"
-          content="Login/Register Page..."
-        />
+        <meta name="description" content="Login/Register Page..." />
       </Head>
       <div className="row">
         <div className="col-lg-10 col-xl-9 mx-auto">
