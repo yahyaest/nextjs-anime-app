@@ -23,16 +23,15 @@ export async function getAllDocuments(client, collection, sort) {
 }
 
 export async function getAllCollectionDocuments(collection, sort) {
-    let client;
+  let client;
   let documents;
 
-   try {
-     client = await connectDatabase();
-   } catch (error) {
-     res.status(500).json({ message: "Connecting to the database failed !" });
-     return;
+  try {
+    client = await connectDatabase();
+  } catch (error) {
+    return { message: "Connecting to the database failed !" };
   }
-  
+
   documents = await getAllDocuments(client, collection, sort);
   documents = JSON.stringify(documents);
   documents = JSON.parse(documents);
