@@ -60,9 +60,10 @@ export async function createUser(req, res) {
   // Password hashing //
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
-  if (req.file) {
-    user.avatar = req.file.filename;
-  }
+  // if (req.file) {
+  //   user.avatar = req.file.filename;
+  // }
+  user.avatar = req.body.avatar;
   await user.save();
 
   user = _.pick(user, ["_id", "username", "email"]);

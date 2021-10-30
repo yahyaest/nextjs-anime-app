@@ -46,8 +46,10 @@ function Slidebar(props) {
     } else {
       return (
         <div className="profile-details">
-          <Image
-            src={`/uploads/images/${userCtx.user?.avatar}`}
+          <img
+            //src={`/uploads/images/${userCtx.user?.avatar}`}
+            src={ `${userCtx.user?.avatar}`  }
+
             alt="profileImg"
             width={45}
             height={45}

@@ -191,7 +191,7 @@ function AnimeComments(props) {
           <div className="mt-3 d-flex flex-row align-items-center p-3 form-color">
             {session?.user && (
               <img
-                src={`/uploads/images/${currentUser?.avatar}`}
+                src={`${currentUser?.avatar}`}
                 alt={`${currentUser?.avatar}`}
                 className="rounded-circle mx-2 skeleton"
                 style={{ width: "60px" }}
@@ -231,7 +231,7 @@ function AnimeComments(props) {
                   <img
                     className="mx-3 rounded-circle pull-left skeleton"
                     alt={`${comment.user.avatar}`}
-                    src={`/uploads/images/${comment.user.avatar}`}
+                    src={`${comment.user.avatar}`}
                     style={{ width: "60px" }}
                   />
                   <div className="media-body">
@@ -327,7 +327,7 @@ function AnimeComments(props) {
                     <div className="reply-form">
                       <div className="reply-input mt-3 mx-5 d-flex flex-row align-items-center p-3 form-color">
                         <img
-                          src={`/uploads/images/${currentUser?.avatar}`}
+                          src={`${currentUser?.avatar}`}
                           alt={`${currentUser?.avatar}`}
                           className="rounded-circle mx-2 skeleton"
                           style={{ width: "40px", height: "40px" }}
@@ -378,7 +378,7 @@ function AnimeComments(props) {
                           <img
                             className="rounded-circle pull-left skeleton"
                             alt={`${reply.submitter_avatar}`}
-                            src={`/uploads/images/${reply.submitter_avatar}`}
+                            src={`${reply.submitter_avatar}`}
                             style={{ width: "40px", height: "40px" }}
                           />
                         </a>

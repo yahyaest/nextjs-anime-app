@@ -7,9 +7,7 @@ import { toast } from "react-toastify";
 
 async function createUser(user, chatProfile) {
   await axios
-    .post("/api/auth/signup", user, {
-      headers: { "content-type": "multipart/form-data" },
-    })
+    .post("/api/auth/signup", user)
     .then((data) => console.log("success add", user))
     .catch((error) => {
       // throw new Error(error || "Something went wrong!");
@@ -38,6 +36,7 @@ function LoginPage() {
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
   const [imageFile, setImageFile] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   function switchAuthModeHandler() {
     setIsLogin((prevState) => !prevState);
@@ -80,11 +79,29 @@ function LoginPage() {
             "Password and confirmed password are different.Try again."
           );
         } else {
-          let newUser = new FormData();
-          newUser.append("username", enteredUsername);
-          newUser.append("email", enteredEmail);
-          newUser.append("password", enteredPassword);
-          newUser.append("avatar", imageFile);
+          let newUser = {};
+          newUser.username = enteredUsername;
+          newUser.email = enteredEmail;
+          newUser.password = enteredPassword;
+          //newUser.avatar= imageUrl;
+
+          let imageToUpload = new FormData();
+          imageToUpload.append("file", imageFile);
+          imageToUpload.append("upload_preset", "o6jw29lp");
+
+          await axios
+            .post(
+              "https://api.cloudinary.com/v1_1/daxqo5wpg/image/upload",
+              imageToUpload
+            )
+            .then((response) => {
+              console.log(response.data.secure_url);
+              newUser.avatar = response.data.secure_url;
+              setImageUrl(response.data.secure_url);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
 
           let chatProfile = new FormData();
           chatProfile.append("username", enteredUsername);

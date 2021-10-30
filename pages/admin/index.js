@@ -261,7 +261,7 @@ function Admin(props) {
       <ListTable
         data={{
           name: "users",
-          imagesUrl: `/uploads/images`,
+          imagesUrl: "",
           table: users,
           icon: <i className="fa fa-users"></i>,
         }}
