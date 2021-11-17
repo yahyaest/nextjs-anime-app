@@ -11,7 +11,7 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "../../store/user-context";
 import SavedItems from "./../../components/anime/anime-saved-items";
 import { getAllModelDocuments } from "../../backend/helpers/mongoose-util";
-import { User } from './../../backend/models/user';
+import { User } from "./../../backend/models/user";
 
 function SavedAnimePage(props) {
   const { favAnimesList } = props; // from server
@@ -45,25 +45,36 @@ function SavedAnimePage(props) {
   );
 }
 
-export async function getStaticProps(context) {
+//// Server Side  ////
+// export async function getStaticProps(context) {
+//   const { userId } = context.params;
+//   const allUsers = await getAllModelDocuments(User, "username");
+
+//   const userData = allUsers.filter((user) => user._id === userId);
+//   const favAnimes = userData[0].liked_animes;
+//   return { props: { favAnimesList: favAnimes }, revalidate: 30 };
+// }
+
+// export async function getStaticPaths() {
+//   const allUsers = await getAllModelDocuments(User, "username");
+
+//   const ids = allUsers.map((user) => ({
+//     params: {
+//       userId: user._id,
+//     },
+//   }));
+
+//   return { paths: ids, fallback: false };
+// }
+
+export async function getServerSideProps(context) {
   const { userId } = context.params;
-   const allUsers = await getAllModelDocuments(User, "username");
+  const allUsers = await getAllModelDocuments(User, "username");
 
   const userData = allUsers.filter((user) => user._id === userId);
   const favAnimes = userData[0].liked_animes;
-  return { props: { favAnimesList: favAnimes }, revalidate: 30 };
-}
 
-export async function getStaticPaths() {
-  const allUsers = await getAllModelDocuments(User, "username");
-
-  const ids = allUsers.map((user) => ({
-    params: {
-      userId: user._id,
-    },
-  }));
-
-  return { paths: ids, fallback: false };
+  return { props: { favAnimesList: favAnimes } };
 }
 
 export default SavedAnimePage;
