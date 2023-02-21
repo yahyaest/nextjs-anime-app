@@ -14,7 +14,7 @@ import "font-awesome/css/font-awesome.css";
 import "boxicons/css/boxicons.min.css";
 import "nextjs-admin-table/dist/css/admin.css";
 import "../styles/quill.snow.css";
-
+import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }) {
   return (

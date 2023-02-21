@@ -27,6 +27,7 @@ module.exports = (phase) => {
           "lh3.googleusercontent.com",
           "platform-lookaside.fbsbx.com",
           "avatars.githubusercontent.com",
+          "i.ytimg.com"
         ],
       },
       env: {

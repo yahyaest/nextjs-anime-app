@@ -7,10 +7,35 @@ import {
   adminMiddleware,
   objectIdMiddleware,
 } from "../helpers/middlewares-util";
+import { getSession } from "next-auth/client";
 
 export async function getUsers(req, res) {
+  const isAuthenticated = await authMiddleware(req, res);
+  const isAdmin = await adminMiddleware(req, res);
+
+  if (!isAuthenticated) {
+    return res.status(401).json({ message: "Not authenticated!" });
+  }
+
+  if (!isAdmin) {
+    return res.status(403).json({ message: "Access denied.Need Admin rights" });
+  }
+
   const users = await User.find().sort("username");
- return  res.status(200).json(users);
+  return res.status(200).json(users);
+}
+
+export async function getCurrentUser(req, res) {
+  const isAuthenticated = await authMiddleware(req, res);
+
+  if (!isAuthenticated) {
+    return res.status(401).json({ message: "Not authenticated!" });
+  }
+  const session = await getSession({ req: req });
+  const user = await User.findOne({ email: session.user.email }).select(
+    "-password"
+  );
+  return res.status(200).json(user);
 }
 
 export async function getUser(req, res, id) {
@@ -38,7 +63,7 @@ export async function getUser(req, res, id) {
         .status(404)
         .json({ message: "The user with the given id was not found." });
     }
-   return res.json(user);
+    return res.json(user);
   } catch (e) {
     return res
       .status(404)
@@ -61,7 +86,7 @@ export async function createUser(req, res) {
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
   // if (req.file) {
-  //   user.avatar = req.file.filename;
+  //   user.avatar = req.file.filename; // used with multer file upload
   // }
   user.avatar = req.body.avatar;
   await user.save();

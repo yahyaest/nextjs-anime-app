@@ -168,6 +168,16 @@ function Slidebar(props) {
           <span className="slidebar__tooltip">Discord</span>
         </li>
 
+        <li>
+          <Link href="/music">
+            <a>
+              <i className='bx bx-headphone'></i>
+              <span className="links_name">Music</span>
+            </a>
+          </Link>
+          <span className="slidebar__tooltip">Music</span>
+        </li>
+
           <li>
           <Link href="/news">
             <a>

@@ -19,38 +19,37 @@ export function UserContextProvider(props) {
   useEffect(() => {
     async function fetchData() {
       const session = await getSession();
-      const users = await axios.get("/api/users");
-      const user = users.data.filter(
-        (user) => user.email === session?.user.email
-      )[0];
+      if (session) {
+        let user = await axios.get("/api/users/me");
+        user = user.data
+        if (user) {
+          const userChats = await axios({
+            method: "GET",
+            url: "https://api.chatengine.io/chats/",
+            headers: {
+              "Project-ID": `${process.env.CHAT_PROJECT_ID}`,
+              "User-Name": user.username,
+              "User-Secret": localStorage.getItem("user-chat-profile-secret"),
+            },
+          });
 
-      if (user) {
-        const userChats = await axios({
-          method: "GET",
-          url: "https://api.chatengine.io/chats/",
-          headers: {
-            "Project-ID": `${process.env.CHAT_PROJECT_ID}`,
-            "User-Name": user.username,
-            "User-Secret": localStorage.getItem("user-chat-profile-secret"),
-          },
-        });
+          let unreadMessages = 0;
 
-        let unreadMessages = 0;
+          userChats.data.map((chat) => {
+            const lastMessage = chat.last_message.id;
+            const currentUser = chat.people.filter(
+              (person) => person.person.username === user.username
+            )[0];
+            if (currentUser.last_read !== lastMessage) {
+              unreadMessages = unreadMessages + 1;
+            }
+          });
 
-        userChats.data.map((chat) => {
-          const lastMessage = chat.last_message.id;
-          const currentUser = chat.people.filter(
-            (person) => person.person.username === user.username
-          )[0];
-          if (currentUser.last_read !== lastMessage) {
-            unreadMessages = unreadMessages + 1;
-          }
-        });
-
-        setUnreadMessages(unreadMessages);
+          setUnreadMessages(unreadMessages);
+        }
+        setCurrentSession(session);
+        setCurrentUser(user);
       }
-      setCurrentSession(session);
-      setCurrentUser(user);
     }
     fetchData();
   }, []);
@@ -62,7 +61,7 @@ export function UserContextProvider(props) {
 
     currentUserData.liked_animes = userFavAnimes;
 
-    toast.info("Pending...", { toastId: "updateFav",autoClose:10000 });
+    toast.info("Pending...", { toastId: "updateFav", autoClose: 10000 });
 
     await axios
       .patch(`/api/users/${currentUserData._id}`, {
@@ -88,7 +87,7 @@ export function UserContextProvider(props) {
     userFavAnimes = userFavAnimes.filter((anime) => anime._id !== favAnime._id);
     currentUserData.liked_animes = userFavAnimes;
 
-    toast.info("Pending...", { toastId: "updateFav",autoClose:10000 });
+    toast.info("Pending...", { toastId: "updateFav", autoClose: 10000 });
 
     await axios
       .patch(`/api/users/${currentUserData._id}`, {

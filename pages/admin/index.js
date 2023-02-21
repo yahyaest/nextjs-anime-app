@@ -352,7 +352,7 @@ function Admin(props) {
               related_id: "user._id",
               property: "avatar",
               type: "image",
-              imagesUrl: `/uploads/images`,
+              imagesUrl: "",
             },
           },
 
