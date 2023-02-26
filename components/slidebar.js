@@ -146,7 +146,7 @@ function Slidebar(props) {
           </li>
         )}
 
-        {userCtx.user && (
+        {/* {userCtx.user && (
           <li>
             <Link href={`/chats`}>
               <a>
@@ -156,7 +156,7 @@ function Slidebar(props) {
             </Link>
             <span className="slidebar__tooltip">Chats</span>
           </li>
-        )}
+        )} */}
 
         <li>
           <Link href="/discord">
@@ -197,7 +197,7 @@ function Slidebar(props) {
               style={{ cursor: "pointer" }}
               onClick={() => {
                 signOut();
-                localStorage.removeItem("user-chat-profile-secret");
+                // localStorage.removeItem("user-chat-profile-secret");
               }}
             ></i>
           </li>

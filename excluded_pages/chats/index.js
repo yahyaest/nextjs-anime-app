@@ -1,5 +1,5 @@
 import Head from "next/head";
-import AnimeChat from "./../../components/chat/anime-chat";
+import AnimeChat from "../../components/chat/anime-chat";
 import Navbar from "../../components/navbar";
 import Slidebar from "../../components/slidebar";
 import Footer from "../../components/footer";
@@ -7,7 +7,7 @@ import axios from "axios";
 import { getSession } from "next-auth/client";
 import { Fragment, useState } from "react";
 import { getAllModelDocuments } from "../../backend/helpers/mongoose-util";
-import { User } from './../../backend/models/user';
+import { User } from '../../backend/models/user';
 
 function ChatPage() {
   const [innerWidth, setInnerWidth] = useState(

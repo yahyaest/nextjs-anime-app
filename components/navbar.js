@@ -20,7 +20,7 @@ function NavbarComponent(props) {
 
   function logoutHandler() {
     signOut();
-    localStorage.removeItem("user-chat-profile-secret");
+    // localStorage.removeItem("user-chat-profile-secret");
 
   }
 
@@ -63,7 +63,7 @@ function NavbarComponent(props) {
               </Nav.Link>
             )}
           </Nav>
-          <Nav>
+          {/* <Nav>
             {session && (
               <Nav.Link className="navbar-item" href="/chats">
                 Chats
@@ -74,7 +74,7 @@ function NavbarComponent(props) {
                 )}
               </Nav.Link>
             )}
-          </Nav>
+          </Nav> */}
           <Nav>
             {!session && !loading && (
               <Nav.Link className="navbar-item" href="/login">

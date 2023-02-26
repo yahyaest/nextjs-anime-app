@@ -14,17 +14,19 @@ async function createUser(user, chatProfile) {
       console.log(error || "Something went wrong!");
     });
 
-  await axios({
-    method: "POST",
-    url: "https://api.chatengine.io/users/",
-    data: chatProfile,
-    headers: { "PRIVATE-KEY": `${process.env.CHAT_PRIVATE_KEY}` },
-  })
-    .then((data) => console.log("success add", chatProfile))
-    .catch((error) => {
-      // throw new Error(error || "Something went wrong!");
-      console.log(error || "Something went wrong!");
-    });
+  // Chat Engine
+
+  // await axios({
+  //   method: "POST",
+  //   url: "https://api.chatengine.io/users/",
+  //   data: chatProfile,
+  //   headers: { "PRIVATE-KEY": `${process.env.CHAT_PRIVATE_KEY}` },
+  // })
+  //   .then((data) => console.log("success add", chatProfile))
+  //   .catch((error) => {
+  //     // throw new Error(error || "Something went wrong!");
+  //     console.log(error || "Something went wrong!");
+  //   });
 }
 
 function LoginPage() {
