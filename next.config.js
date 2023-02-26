@@ -49,7 +49,7 @@ module.exports = (phase) => {
         CHAT_PROJECT_ID: "8783cfe9-1aeb-4896-bb14-9b8449243209",
         CHAT_PRIVATE_KEY: "2b8356e1-ace2-48bb-b5f7-bea448c3a5af",
         CHAT_SECRET: "25020680",
-        HUGGINGFACE_TOKEN: "api_muCLbvAyTrOEQEuBBDmUzbHnNfRtREvCBj"
+        HUGGINGFACE_TOKEN: "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"
       },
     };
   }
@@ -83,7 +83,7 @@ module.exports = (phase) => {
       CHAT_PROJECT_ID: "8783cfe9-1aeb-4896-bb14-9b8449243209",
       CHAT_PRIVATE_KEY: "2b8356e1-ace2-48bb-b5f7-bea448c3a5af",
       CHAT_SECRET: "25020680",
-      HUGGINGFACE_TOKEN: "api_muCLbvAyTrOEQEuBBDmUzbHnNfRtREvCBj"
+      HUGGINGFACE_TOKEN: "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"
       },
   };
 };
