@@ -76,19 +76,28 @@ export async function getServerSideProps() {
     params: { safeSearch: "Off", textFormat: "Raw" },
     headers: {
       "accept-language": "en",
-      "x-bingapis-sdk": "true",
-      "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-      "x-rapidapi-key": "039a9846e8msh09b07e71c9a02acp1703cdjsna6d0a8007ad0",
+      "X-BingApis-SDK": "true",
+      "X-RapidAPI-Key": "833daa88b7msh383ab5b211411fdp141a56jsn68eac168d5ad",
+      "X-RapidAPI-Host": "bing-news-search1.p.rapidapi.com",
     },
   };
 
   
-
- const response = await axios.request(options);
-
-  return {
+try {
+  const response = await axios.request(options);
+ console.log("response :", response )
+   return {
+     props: {
+       animeNews: response.data,
+     },
+   };
+  
+} catch (error) {
+  console.error(error);
+  return{
     props: {
-      animeNews: response.data,
-    },
-  };
+       animeNews: null,
+     },
+  }
+}
 }

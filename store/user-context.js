@@ -23,29 +23,33 @@ export function UserContextProvider(props) {
         let user = await axios.get("/api/users/me");
         user = user.data
         if (user) {
-          const userChats = await axios({
-            method: "GET",
-            url: "https://api.chatengine.io/chats/",
-            headers: {
-              "Project-ID": `${process.env.CHAT_PROJECT_ID}`,
-              "User-Name": user.username,
-              "User-Secret": localStorage.getItem("user-chat-profile-secret"),
-            },
-          });
+          try {
+            const userChats = await axios({
+              method: "GET",
+              url: "https://api.chatengine.io/chats/",
+              headers: {
+                "Project-ID": `${process.env.CHAT_PROJECT_ID}`,
+                "User-Name": user.username,
+                "User-Secret": localStorage.getItem("user-chat-profile-secret"),
+              },
+            });       
+            let unreadMessages = 0;
+  
+            userChats.data.map((chat) => {
+              const lastMessage = chat.last_message.id;
+              const currentUser = chat.people.filter(
+                (person) => person.person.username === user.username
+              )[0];
+              if (currentUser.last_read !== lastMessage) {
+                unreadMessages = unreadMessages + 1;
+              }
+            });
+  
+            setUnreadMessages(unreadMessages);
+          } catch (error) {
+            console.log(error)
+          }
 
-          let unreadMessages = 0;
-
-          userChats.data.map((chat) => {
-            const lastMessage = chat.last_message.id;
-            const currentUser = chat.people.filter(
-              (person) => person.person.username === user.username
-            )[0];
-            if (currentUser.last_read !== lastMessage) {
-              unreadMessages = unreadMessages + 1;
-            }
-          });
-
-          setUnreadMessages(unreadMessages);
         }
         setCurrentSession(session);
         setCurrentUser(user);
