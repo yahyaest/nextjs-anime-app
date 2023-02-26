@@ -7,9 +7,19 @@ import Slidebar from './../components/slidebar';
 import Footer from './../components/footer';
 
 function news(props) {
+
   const { animeNews  } = props;
  
- if (!animeNews?.value) return "Loading...";
+ if (!animeNews?.articles) return (
+   <Fragment>
+     <Navbar />
+     <Slidebar />
+     <div className="news_component text-center py-5">
+      <h5> Anime news API is down please try later</h5>
+     </div>
+     <Footer />
+   </Fragment>
+ );
 
  return (
    <Fragment>
@@ -23,24 +33,27 @@ function news(props) {
      <div className="news_component">
        <h1 className="text-center mb-4">Lastest Anime News</h1>
        <div className="news_list">
-         {animeNews.value.map((news, i) => (
+         {animeNews.articles.map((news, i) => (
            <div
              className="news-card shadow col-lg-3 col-md-5 col-sm-10 mb-5"
              key={i}
              onClick={() => window.open(`${news.url}`)}
            >
              <div className="news-image-container">
-               <h4 className="news-title">{news.name}</h4>
+              <div className="news-title">
+               <h5 >{news.title}</h5>
+               <h6 >By : {news.author}</h6>
+              </div>
                <img
                  style={{ maxWidth: "125px", maxHeight: "125px" }}
-                 src={news?.image?.thumbnail?.contentUrl || `/images/news.jpg`}
+                 src={news?.urlToImage || `/images/news.jpg`}
                  alt="news"
                />
              </div>
 
              <p>
-               {news.description.length > 100
-                 ? `${news.description.substring(0, 100)}...`
+               {news.description.length > 200
+                 ? `${news.description.substring(0, 200)}...`
                  : news.description}
              </p>
 
@@ -48,15 +61,12 @@ function news(props) {
                <div>
                  <img
                    style={{ maxWidth: "50px", maxHeight: "50px" }}
-                   src={
-                     news.provider[0]?.image?.thumbnail?.contentUrl ||
-                     `/images/news.jpg`
-                   }
+                   src={news?.urlToImage || `/images/news.jpg`}
                    alt="news"
                  />
-                 <p className="provider-name">{news.provider[0]?.name}</p>
+                 <p className="provider-name">{news?.source?.name}</p>
                </div>
-               <p>{moment(news.datePublished).startOf("ss").fromNow()}</p>
+               <p>{moment(news.publishedAt).startOf("ss").fromNow()}</p>
              </div>
            </div>
          ))}
@@ -70,22 +80,18 @@ function news(props) {
 export default news;
 
 export async function getServerSideProps() {
-  const options = {
-    method: "GET",
-    url: "https://bing-news-search1.p.rapidapi.com/news/search?q=anime&freshness=Day&count=50",
-    params: { safeSearch: "Off", textFormat: "Raw" },
-    headers: {
-      "accept-language": "en",
-      "X-BingApis-SDK": "true",
-      "X-RapidAPI-Key": "833daa88b7msh383ab5b211411fdp141a56jsn68eac168d5ad",
-      "X-RapidAPI-Host": "bing-news-search1.p.rapidapi.com",
-    },
-  };
+  let date = new Date()
+  let toDate = date.toISOString().split("T")[0];
+  let fromDate = date.setDate(date.getDate() - 7)
+  fromDate = new Date(fromDate)
+  fromDate = fromDate.toISOString().split("T")[0];
 
   
+  const API_KEY = "d7b269e561c342a69e33bc0bb2b86ddf";
+  const url = `https://newsapi.org/v2/everything?q=japanese-anime&from=${fromDate}&to=${toDate}&sortBy=popularity&apiKey=${API_KEY}`;
+
 try {
-  const response = await axios.request(options);
- console.log("response :", response )
+  const response = await axios.get(url);
    return {
      props: {
        animeNews: response.data,
