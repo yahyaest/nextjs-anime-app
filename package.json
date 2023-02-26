@@ -10,10 +10,12 @@
     "compile:sass": "sass --watch scss:styles"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@zeit/next-css": "^1.0.1",
+    "antd": "^4.17.3",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.0.2",
@@ -24,6 +26,7 @@
     "joi": "^17.4.1",
     "joi-objectid": "^3.0.1",
     "lodash": "^4.17.21",
+    "millify": "^4.0.0",
     "moment": "^2.29.1",
     "mongodb": "^4.0.0",
     "mongoose": "^5.12.1",
@@ -45,7 +48,8 @@
     "react-toastify": "^7.0.4",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "yt-search": "^2.10.2"
   },
   "devDependencies": {
     "eslint": "7.30.0",

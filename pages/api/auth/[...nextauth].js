@@ -34,7 +34,6 @@ export default NextAuth({
           user.password
         );
 
-
         if (!validPassword) {
           client.connection.close();
           throw new Error("Invalid password.");

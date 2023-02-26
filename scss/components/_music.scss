@@ -1,0 +1,90 @@
+@use "../custom" as *;
+@use "../utils/mixins" as *;
+
+.music_component {
+  margin: 0 auto;
+  margin-top: 5rem;
+  position: relative;
+  top: 0;
+  left: 50px;
+  width: calc(95% - 50px);
+  transition: all 0.5s ease;
+}
+.sidebar.sidebar__open ~ .music_component {
+  left: 150px;
+  width: calc(90% - 100px);
+}
+
+.ant-space {
+  display: block !important;
+  width: 60% !important;
+  margin: auto auto !important;
+  margin-bottom: 100px !important;
+
+  @include media-breakpoint-down(lg) {
+    width: 80% !important;
+  }
+
+  @include media-breakpoint-down(sm) {
+    width: 90% !important;
+    margin-left: 10px !important;
+  }
+}
+
+.ant-input {
+  @include media-breakpoint-down(sm) {
+    width: 100px !important;
+  }
+}
+
+.video_search_result {
+  width: 90%;
+  margin: auto auto;
+}
+
+.video_card {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transition: all ease 1s;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid seashell;
+    border-radius: 25px;
+    transform: scale(1.025);
+  }
+}
+
+.video_card_img {
+  width: 25%;
+}
+.video_card_info {
+  width: 75%;
+  @include media-breakpoint-down(lg) {
+    p {
+      font-size: 10px;
+      margin: 0;
+      margin-bottom: 3px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    p {
+      font-size: 7px;
+      margin: 0;
+      margin-bottom: 2px;
+    }
+  }
+}
+
+.video_title {
+  color: black;
+  @include media-breakpoint-down(lg) {
+    font-size: 14px;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 10px;
+  }
+}

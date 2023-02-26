@@ -15,7 +15,7 @@ function SearchCard(props) {
     if (title.length > 40) fontSize = "0.8rem";
 
     return (
-      <h2 className="anime-card__title" style={{ fontSize: `${fontSize}` }}>
+      <h2 className="anime-card__title text-white" style={{ fontSize: `${fontSize}` }}>
         {title}
       </h2>
     );

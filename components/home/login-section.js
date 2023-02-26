@@ -16,7 +16,7 @@ function LoginSection() {
 
    }
    fetchData();
- }, );
+ }, []);
 
   async function submitHandler(event) {
     event.preventDefault();

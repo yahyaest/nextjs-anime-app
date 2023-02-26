@@ -234,6 +234,9 @@ transform: translateX(10%);
 .postcard .postcard__tagbox .blue.play:hover {
   background: $main-blue;
 }
+.blue .postcard__title {
+  color: #000;
+}
 .blue .postcard__title:hover {
   color: $main-blue;
 }
@@ -253,6 +256,9 @@ transform: translateX(10%);
 
 .postcard .postcard__tagbox .red.play:hover {
 	 background: #bd150b;
+}
+ .red .postcard__title {
+	 color: #fff;
 }
  .red .postcard__title:hover {
 	 color: #bd150b;
