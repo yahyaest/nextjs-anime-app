@@ -270,7 +270,7 @@ function AnimeComments(props) {
                       <div className="col-8 d-flex mx-5 px-5">
                         <button
                           className="btn btn-link px-0"
-                          style={{ textDecoration: "none", color: "black" }}
+                          style={{ textDecoration: "none", color: "grey" }}
                           disabled={userCtx.user ? false : true}
                           onClick={() =>
                             handleLikeDislikeComment(
@@ -291,7 +291,7 @@ function AnimeComments(props) {
 
                         <button
                           className="btn btn-link px-0"
-                          style={{ textDecoration: "none", color: "black" }}
+                          style={{ textDecoration: "none", color: "grey" }}
                           disabled={userCtx.user ? false : true}
                           onClick={() =>
                             handleLikeDislikeComment(
@@ -312,7 +312,7 @@ function AnimeComments(props) {
 
                         <button
                           className="btn btn-link px-0"
-                          style={{ textDecoration: "none", color: "black" }}
+                          style={{ textDecoration: "none", color: "grey" }}
                           onClick={() => handleShowReplies(index)}
                         >
                           <i className="fa fa-comments mx-2 comment-logo"></i>

@@ -4,7 +4,7 @@ function IntroSection() {
    <section className="intro  position-relative mb-5 ">
      <div className=" m-2 text-center text-white m-2 absolute-center">
        <div className="col-sm-6 intro-content">
-         <h1>Anime Lab</h1>
+         <h1 className="text-white">Anime Lab</h1>
          <p className="lead">
            Anime fans love AnimeLab! Watch anime hits and fast-tracked simulcast
            shows direct from Japan in HD. AnimeLab features thousands episodes

@@ -43,7 +43,7 @@ function SearchPage(props) {
   return (
     <Fragment>
       <Head>
-        <title>Search Page</title>
+        <title className="text-dark">Search Page</title>
         <meta
           name="description"
           content="find your favourites animes and add them to your saved list."

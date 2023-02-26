@@ -10716,6 +10716,10 @@ body.dark h5 {
   color: #fff;
 }
 
+body.dark h6 {
+  color: #fff;
+}
+
 body.dark h1 span {
   transition-delay: 0ms !important;
 }
@@ -11559,6 +11563,10 @@ footer a:hover {
   background: #0076bd;
 }
 
+.blue .postcard__title {
+  color: #000;
+}
+
 .blue .postcard__title:hover {
   color: #0076bd;
 }
@@ -11577,6 +11585,10 @@ footer a:hover {
 
 .postcard .postcard__tagbox .red.play:hover {
   background: #bd150b;
+}
+
+.red .postcard__title {
+  color: #fff;
 }
 
 .red .postcard__title:hover {
