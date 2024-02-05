@@ -73,11 +73,19 @@ export async function deleteDocument(client, collection, query) {
 //// get anime/manga by id
 
 export async function getAnimeById(id) {
-  const allAnimes = await getAllCollectionDocuments("animes", { title: 1 });
-  return allAnimes.find((anime) => anime._id === id);
+  try {
+    const allAnimes = await getAllCollectionDocuments("animes", { title: 1 });
+    return allAnimes.find((anime) => anime._id === id);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export async function getMangaById(id) {
-  const allMangas = await getAllCollectionDocuments("mangas", { title: 1 });
-  return allMangas.find((manga) => manga._id === id);
+  try {
+    const allMangas = await getAllCollectionDocuments("mangas", { title: 1 });
+    return allMangas.find((manga) => manga._id === id);
+  } catch (err) {
+    console.log(err);
+  }
 }

@@ -10,6 +10,7 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install react -g
 RUN npm install react-scripts -g
+RUN npm install next
 ENV PATH /app/node_modules/.bin:$PATH
 RUN npm ci
 

@@ -18,6 +18,9 @@ const withTM = require("next-transpile-modules")([
 // });
 
 module.exports = (phase) => {
+  const isProd = process.env.NODE_ENV === 'production'
+
+
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       reactStrictMode: true,
@@ -27,7 +30,7 @@ module.exports = (phase) => {
           "lh3.googleusercontent.com",
           "platform-lookaside.fbsbx.com",
           "avatars.githubusercontent.com",
-          "i.ytimg.com"
+          "i.ytimg.com",
         ],
       },
       env: {
@@ -49,13 +52,17 @@ module.exports = (phase) => {
         CHAT_PROJECT_ID: "8783cfe9-1aeb-4896-bb14-9b8449243209",
         CHAT_PRIVATE_KEY: "2b8356e1-ace2-48bb-b5f7-bea448c3a5af",
         CHAT_SECRET: "25020680",
-        HUGGINGFACE_TOKEN: "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"
+        HUGGINGFACE_TOKEN: "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",
       },
     };
   }
 
   // production
   return {
+    // Set basePath and assetPrefix in production
+
+    basePath: "/anime-app",
+    assetPrefix: "/anime-app/",
     reactStrictMode: true,
     images: {
       domains: [
@@ -64,10 +71,12 @@ module.exports = (phase) => {
         "platform-lookaside.fbsbx.com",
         "avatars.githubusercontent.com",
         "res.cloudinary.com",
-        "i.ytimg.com"
+        "i.ytimg.com",
       ],
     },
     env: {
+      BASEPATH: "/anime-app",
+      ASSETPREFIX: "/anime-app/",
       NEXT_APP_API_URL: "http://localhost:3000/api",
       NEXT_APP_ROOT_URL: "http://localhost:3000",
       NEXTAUTH_URL: "http://localhost:3000",
@@ -84,7 +93,7 @@ module.exports = (phase) => {
       CHAT_PROJECT_ID: "8783cfe9-1aeb-4896-bb14-9b8449243209",
       CHAT_PRIVATE_KEY: "2b8356e1-ace2-48bb-b5f7-bea448c3a5af",
       CHAT_SECRET: "25020680",
-      HUGGINGFACE_TOKEN: "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"
-      },
+      HUGGINGFACE_TOKEN: "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",
+    },
   };
 };
