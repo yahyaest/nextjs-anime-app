@@ -1,11 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
 
 import { Fragment } from "react";
 import Navbar from "../../components/navbar";
 import Slidebar from "../../components/slidebar";
 import Footer from "../../components/footer";
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 
 import UserContext from "../../store/user-context";

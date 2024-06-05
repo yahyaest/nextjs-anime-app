@@ -23,14 +23,12 @@ apiRoute.get(async (req, res) => {
 
   try {
     client = await connectDb();
+    await getBots(req, res);
+    client.connection.close();
   } catch (error) {
     res.status(500).json({ message: "Connecting to the database failed !" });
-    return;
+    return [];
   }
-
-  await getBots(req, res);
-
-  client.connection.close();
 });
 
 apiRoute.post(async (req, res) => {

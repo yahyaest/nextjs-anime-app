@@ -14,15 +14,20 @@ export function CommentsContextProvider(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const comments = await axios.get("/api/comments");
-      setCommentsList(comments.data);
+      try {
+        const comments = await axios.get("/api/comments");
+        setCommentsList(comments.data);
+      } catch (error) {
+        console.error("No comment was found");
+        setCommentsList([]);
+      }
     }
     fetchData();
   }, []);
 
   async function addNewCommentHandler(comment) {
     let comments = commentsList;
-    toast.info("Pending...", { toastId: "updateIcon", autoClose:10000 });
+    toast.info("Pending...", { toastId: "updateIcon", autoClose: 10000 });
 
     await axios
       .post("/api/comments", comment)
@@ -37,7 +42,7 @@ export function CommentsContextProvider(props) {
 
   async function addNewReplyHandler(replies, id) {
     let comments = commentsList;
-    toast.info("Pending...", { toastId: "updateIcon", autoClose:10000 });
+    toast.info("Pending...", { toastId: "updateIcon", autoClose: 10000 });
 
     await axios
       .patch(`/api/comments/${id}`, { comment_replies: replies })
@@ -55,7 +60,7 @@ export function CommentsContextProvider(props) {
 
   async function updateLikeIconHandler(comment, id) {
     let comments = commentsList;
-    toast.info("Pending...", { toastId: "updateIcon", autoClose:10000});
+    toast.info("Pending...", { toastId: "updateIcon", autoClose: 10000 });
     await axios
       .patch(`/api/comments/${id}`, {
         like_counter: comment.like_counter,

@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import millify from "millify";
 import ytSearch from "yt-search";
 import { Input, Select, Space, Button,Typography } from "antd";

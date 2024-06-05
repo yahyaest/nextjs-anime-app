@@ -7,8 +7,13 @@ import {
 } from "../helpers/middlewares-util";
 
 export async function getBots(req, res) {
-  const bots = await Bot.find().sort("created_at");
-  return res.status(200).json(bots);
+  try {
+    const bots = await Bot.find().sort("created_at");
+    return res.status(200).json(bots);
+  } catch (error) {
+    console.log("Couldn't get bots...");
+    return res.status(404).json({message: "Couldn't get bots"});
+  }
 }
 
 export async function getBot(req, res, id) {

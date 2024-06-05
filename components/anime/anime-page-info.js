@@ -1,5 +1,5 @@
 import { Fragment, useState, useContext, useEffect } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/css/modal-video.min.css";
 import UserContext from "../../store/user-context";
