@@ -10,8 +10,42 @@ services:
     environment:
       NODE_ENV: production
     ports:
-      - "3003:3000"
+      - "3000:3000"
     volumes:
-       - .:/app
+      - .:/app
+      - /app/node_modules
+      - /app/.next
     env_file:
       - .env
+    depends_on:
+      - mongodb
+  
+  mongodb:
+    image: "mongo"
+    container_name: mongodb
+    volumes:
+      - data:/data/db
+      - ./Database/anime-app:/backup/anime-app
+    # env_file:
+    #   - ./env/mongo.env
+    ports:
+      - 28017:27017
+  
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    environment:
+      # - ME_CONFIG_MONGODB_ADMINUSERNAME=yahya_machat
+      # - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
+      - ME_CONFIG_MONGODB_URL=mongodb://yahya:25020680@mongodb:27017
+      - ME_CONFIG_BASICAUTH_USERNAME=mexpress
+      - ME_CONFIG_BASICAUTH_PASSWORD=mexpress
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+
+volumes:
+  data:

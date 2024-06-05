@@ -1,11 +1,16 @@
 import { MongoClient } from "mongodb";
 
 export async function connectDatabase() {
-  const client = await MongoClient.connect(
-    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.kf0nx.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
-  );
-
-  return client;
+  try {
+    const client = await MongoClient.connect(
+      //`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.kf0nx.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+      `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@mongodb:27017/anime-app?authSource=admin`
+    );
+    console.log(`Connected to anime-app with mongodb ...`);
+    return client;
+  } catch (error) {
+    console.error(`Could not connect to anime-app with mongodb  ...`, error);
+  }
 }
 
 export async function insertDocument(client, collection, document) {
@@ -15,11 +20,20 @@ export async function insertDocument(client, collection, document) {
 }
 
 export async function getAllDocuments(client, collection, sort) {
-  const db = client.db();
+  try {
+    const db = client.db();
 
-  const documents = await db.collection(collection).find().sort(sort).toArray();
+    const documents = await db
+      .collection(collection)
+      .find()
+      .sort(sort)
+      .toArray();
 
-  return documents;
+    return documents;
+  } catch (error) {
+    console.error("Could not connect to anime-app with mongodb  ...");
+    return [];
+  }
 }
 
 export async function getAllCollectionDocuments(collection, sort) {
@@ -29,7 +43,8 @@ export async function getAllCollectionDocuments(collection, sort) {
   try {
     client = await connectDatabase();
   } catch (error) {
-    return { message: "Connecting to the database failed !" };
+    console.error("Connecting to the database failed !");
+    return [];
   }
 
   documents = await getAllDocuments(client, collection, sort);

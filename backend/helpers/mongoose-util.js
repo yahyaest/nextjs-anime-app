@@ -8,16 +8,18 @@ export async function connectDb() {
 
   try {
     client = await mongoose.connect(
-      `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.kf0nx.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
+      // `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.kf0nx.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
+      `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@mongodb:27017/anime-app?authSource=admin`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       }
     );
-    console.log(`Connected to anime-app ...`);
+    console.log(`Connected to anime-app with mongoose ...`);
     return client;
   } catch {
-    (err) => console.log(`Could not connect to anime-app ...`, err);
+    (err) =>
+      console.log(`Could not connect to anime-app with mongoose ...`, err);
   }
 }
 
@@ -32,16 +34,13 @@ export async function getAllModelDocuments(model, sortBy) {
 
   try {
     client = await connectDb();
+    documents = await getAllDocuments(model, sortBy);
+    documents = JSON.stringify(documents);
+    documents = JSON.parse(documents);
+    client.connection.close();
+    return documents;
   } catch (error) {
     console.log(error);
-    return;
+    return [];
   }
-
-  documents = await getAllDocuments(model, sortBy);
-  documents = JSON.stringify(documents);
-  documents = JSON.parse(documents);
-
-  client.connection.close();
-
-  return documents;
 }
