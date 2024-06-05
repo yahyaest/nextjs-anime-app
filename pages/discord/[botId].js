@@ -9,11 +9,12 @@ import { getAllModelDocuments } from "../../backend/helpers/mongoose-util";
 import { Bot } from './../../backend/models/bot';
 
 async function getChatData(message, API_URL, botName) {
-  const payload = {
-    inputs: {
-      text: message,
-    },
-  };
+  // const payload = {
+  //   inputs: {
+  //     text: message,
+  //   },
+  // };
+  const payload = {inputs : message}
   const headers = {
     Authorization: "Bearer " + process.env.HUGGINGFACE_TOKEN,
   };
@@ -26,7 +27,8 @@ async function getChatData(message, API_URL, botName) {
     });
 
     const data = await response.data;
-    return data.generated_text;
+    // return data.generated_text;
+    return data[0].generated_text;
   } catch (err) {
     console.log(err.error);
     return err.error || `${botName} is loading ...`;
