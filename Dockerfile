@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:14-alpine
+FROM node:20-alpine AS builder
 
 # Set the working directory to /app
 WORKDIR /app
@@ -8,20 +8,30 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install react -g
-RUN npm install react-scripts -g
-ENV PATH /app/node_modules/.bin:$PATH
-RUN npm ci
+RUN npm ci --only=production
 
 # Copy the rest of the application code to the container
 COPY . .
 
+# Install dependencies
+RUN npm install next
+
 # Build the React app
-RUN npm run build
+COPY .next/ /app/.next/
+
+# RUN npm run build
+
+# Use a lighter base image for the final stage
+FROM node:20-alpine
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy build artifacts from the previous stage
+COPY --from=builder /app .
 
 # Expose port 3000
 EXPOSE 3000
 
 # Start the app
 CMD ["npm", "start"]
-
