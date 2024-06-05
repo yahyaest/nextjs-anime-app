@@ -1,0 +1,88 @@
+[{
+  "_id": {
+    "$oid": "6134fc69bf3af668fc719c3e"
+  },
+  "avatar": "2021-09-05T17-20-40.263Zgintoki.png",
+  "name": "gintoki_bot",
+  "url": "https://api-inference.huggingface.co/models/yahya1994/DialoGPT-small-Gintama-Gintoki",
+  "__v": 0,
+  "anime": "Gintama",
+  "discord": "https://discord.gg/7bd89An9Yp"
+},
+{
+  "_id": {
+    "$oid": "6135040dbf3af668fc719ee7"
+  },
+  "avatar": "2021-09-05T17-53-17.365Zmigi.jpg",
+  "name": "migi_bot",
+  "url": "https://api-inference.huggingface.co/models/yahya1994/DialoGPT-small-Parasyte-Migi",
+  "__v": 0,
+  "anime": "Parasyte: The Maxim",
+  "discord": "https://discord.gg/yse58hJN8h"
+},
+{
+  "_id": {
+    "$oid": "613911a05c80024474ec404a"
+  },
+  "avatar": "2021-09-08T19-40-12.274Zryuk.png",
+  "name": "ryuk_bot",
+  "anime": "Death Note",
+  "url": "https://api-inference.huggingface.co/models/yahya1994/DialoGPT-small-DN-Ryuk",
+  "__v": 0,
+  "discord": "https://discord.gg/ZGByN6CzK9"
+},
+{
+  "_id": {
+    "$oid": "613918425c80024474ec40d3"
+  },
+  "avatar": "2021-09-08T20-08-34.173Zaot.jpg",
+  "name": "eren_bot",
+  "anime": "Attack on Titan",
+  "url": "https://api-inference.huggingface.co/models/yahya1994/DialoGPT-small-AOT-Eren",
+  "__v": 0,
+  "discord": "https://discord.gg/ruMcNywfQG"
+},
+{
+  "_id": {
+    "$oid": "613953d0411c887034c11d78"
+  },
+  "avatar": "2021-09-09T00-22-38.607Zrem.jpg",
+  "name": "rem_bot",
+  "anime": "Re Zero",
+  "discord": "https://discord.gg/MV8JH6JyuZ",
+  "url": "https://api-inference.huggingface.co/models/yahya1994/DialoGPT-small-ReZero-Rem\t",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "613e36a0c617f425089bbab8"
+  },
+  "avatar": "2021-09-12T17-19-28.523Zdeath_note.png",
+  "name": "light_bot",
+  "anime": "Death Note",
+  "discord": "https://discord.gg/83hcMEAc6j",
+  "url": "https://api-inference.huggingface.co/models/yahya1994/DialoGPT-small-DN-Light",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "613e36f0c617f425089bbafd"
+  },
+  "avatar": "2021-09-12T17-20-48.454ZL.jpg",
+  "name": "L_bot",
+  "anime": "Death Note",
+  "discord": "https://discord.gg/sMSCgrxzhC",
+  "url": "https://api-inference.huggingface.co/models/yahya1994/DialoGPT-small-DN-L",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "61460c54e6a5335450636376"
+  },
+  "avatar": "2021-09-18T15-57-07.829Zsubaru.jpg",
+  "name": "subaru_bot",
+  "anime": "Re Zero",
+  "discord": "https://discord.gg/A3aGNAV5ug",
+  "url": "https://api-inference.huggingface.co/models/yahya1994/DialoGPT-small-ReZero-Subaru",
+  "__v": 0
+}]

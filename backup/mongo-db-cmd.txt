@@ -1,0 +1,74 @@
+yahya@yahya-debian ~/Projects/nextjs-anime-app (master) $ docker exec -it mongodb bash
+root@cce31facebbe:/# mongosh
+
+
+test> use anime-app
+switched to db anime-app
+
+anime-app> show databases
+admin       40.00 KiB
+config     108.00 KiB
+local       72.00 KiB
+
+
+anime-app> db.bots.insertMany([{ "_id": "6134fc69bf3af668fc719c3e", "avatar": "2021-09-05T17-20-40.263Zgintoki.png", "name": "gintoki_bot", "url": "https://api-inference.huggingface.co/models/yahya1994/DialoGPT-small-Gintama-Gintoki", "__v": 0, "anime": "Gintama", "discord": "https://discord.gg/7bd89An9Yp" }, ...]);
+
+anime-app> show databases
+admin       40.00 KiB
+anime-app   40.00 KiB
+config     108.00 KiB
+local       72.00 KiB
+
+anime-app> show collections
+bots
+
+
+anime-app> db.bots.find()
+[
+  {
+    _id: '6134fc69bf3af668fc719c3e',
+    avatar: '2021-09-05T17-20-40.263Zgintoki.png',
+    name: 'gintoki_bot',
+    url: 'https://api-inference.huggingface.co/models/yahya1994/DialoGPT-small-Gintama-Gintoki',
+    __v: 0,
+    anime: 'Gintama',
+    discord: 'https://discord.gg/7bd89An9Yp'
+  },
+  ...
+ ]
+
+// Update document
+ db.users.updateOne(
+  { username: 'sanji' },
+  { $set: { password: '25020680' } }
+)
+
+
+ // create user 
+ test> use admin
+switched to db admin
+admin> db.createUser({
+ user: "yahya",
+ pwd: "25020680",
+ roles: [{ role: "readWrite", db: "anime-app" }]
+... })
+{ ok: 1 }
+
+# db.createUser({ user: "yahya", pwd: "25020680", roles: [{ role: "readWrite", db: "anime-app" }] })
+admin> 
+
+admin> db.getUsers()
+{
+  users: [
+    {
+      _id: 'admin.yahya',
+      userId: UUID('5a0c5c5b-289b-430c-a668-2b601f8140e9'),
+      user: 'yahya',
+      db: 'admin',
+      roles: [ { role: 'readWrite', db: 'anime-app' } ],
+      mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ]
+    }
+  ],
+  ok: 1
+}
+admin> 
