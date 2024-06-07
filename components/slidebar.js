@@ -1,14 +1,14 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
-import { getSession, signOut } from "next-auth/client";
+import { useSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 
 import UserContext from "../store/user-context";
 
 function Slidebar(props) {
-  const [session, setSession] = useState();
+  const { data: session } = useSession();
   const [userProfileDetails, setUserProfileDetails] = useState();
   const userCtx = useContext(UserContext);
 
@@ -48,8 +48,7 @@ function Slidebar(props) {
         <div className="profile-details">
           <img
             //src={`/uploads/images/${userCtx.user?.avatar}`}
-            src={ `${userCtx.user?.avatar}`  }
-
+            src={`${userCtx.user?.avatar}`}
             alt="profileImg"
             width={45}
             height={45}
@@ -64,8 +63,6 @@ function Slidebar(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const session = await getSession();
-      setSession(session);
       const userData = await getUserProfileDetails();
       setUserProfileDetails(userData);
     }
@@ -81,9 +78,10 @@ function Slidebar(props) {
       </div>
 
       <ul className="icon-list">
-        {userCtx.user?.isAdmin && (
+        {/* After upgrade react and react-dom the react-admin-table need to be updated also */}
+        {/* {userCtx.user?.isAdmin && (
           <li>
-            <Link href="/admin">
+            <Link legacyBehavior href="/admin">
               <a>
                 <i className="bx bx-grid-alt"></i>
                 <span className="links_name">Admin</span>
@@ -91,11 +89,11 @@ function Slidebar(props) {
             </Link>
             <span className="slidebar__tooltip">Admin</span>
           </li>
-        )}
+        )} */}
 
         {!session?.user && (
           <li>
-            <Link href="/login">
+            <Link legacyBehavior href="/login">
               <a>
                 <i className="bx bx-user"></i>
                 <span className="links_name">Login</span>
@@ -106,7 +104,7 @@ function Slidebar(props) {
         )}
 
         <li>
-          <Link href="/search">
+          <Link legacyBehavior href="/search">
             <a>
               <i className="bx bx-search-alt-2"></i>
               <span className="links_name">Search</span>
@@ -115,7 +113,7 @@ function Slidebar(props) {
           <span className="slidebar__tooltip">Search</span>
         </li>
         <li>
-          <Link href="/anime">
+          <Link legacyBehavior href="/anime">
             <a>
               <i className="bx bx-bookmarks"></i>
               <span className="links_name">Animes</span>
@@ -125,7 +123,7 @@ function Slidebar(props) {
         </li>
 
         <li>
-          <Link href="/manga">
+          <Link legacyBehavior href="/manga">
             <a>
               <i className="bx bx-book"></i>
               <span className="links_name">Mangas</span>
@@ -136,7 +134,7 @@ function Slidebar(props) {
 
         {userCtx.user && (
           <li>
-            <Link href={`/saved/${userCtx.user?._id}`}>
+            <Link legacyBehavior href={`/saved/${userCtx.user?._id}`}>
               <a>
                 <i className="bx bx-heart"></i>
                 <span className="links_name">Saved</span>
@@ -159,7 +157,7 @@ function Slidebar(props) {
         )} */}
 
         <li>
-          <Link href="/discord">
+          <Link legacyBehavior href="/discord">
             <a>
               <i className="bx bxl-discord"></i>
               <span className="links_name">Discord</span>
@@ -169,19 +167,19 @@ function Slidebar(props) {
         </li>
 
         <li>
-          <Link href="/music">
+          <Link legacyBehavior href="/music">
             <a>
-              <i className='bx bx-headphone'></i>
+              <i className="bx bx-headphone"></i>
               <span className="links_name">Music</span>
             </a>
           </Link>
           <span className="slidebar__tooltip">Music</span>
         </li>
 
-          <li>
-          <Link href="/news">
+        <li>
+          <Link legacyBehavior href="/news">
             <a>
-              <i className='bx bx-news'></i>
+              <i className="bx bx-news"></i>
               <span className="links_name">News</span>
             </a>
           </Link>

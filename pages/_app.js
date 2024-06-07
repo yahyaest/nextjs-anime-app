@@ -3,7 +3,8 @@ import store from "../store/redux-store";
 import { Provider as ReduxProvider } from "react-redux";
 
 import { ToastContainer } from "react-toastify";
-import { Provider } from "next-auth/client";
+import { SessionProvider } from "next-auth/react";
+
 import { UserContextProvider } from "./../store/user-context";
 import { CommentsContextProvider } from "./../store/comment-context";
 
@@ -14,14 +15,14 @@ import "font-awesome/css/font-awesome.css";
 import "boxicons/css/boxicons.min.css";
 import "nextjs-admin-table/dist/css/admin.css";
 import "../styles/quill.snow.css";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }) {
   return (
     <ReduxProvider store={store}>
+        <SessionProvider session={pageProps.session}>
       <UserContextProvider>
         <CommentsContextProvider>
-          <Provider session={pageProps.session}>
             <Head>
               <title>Next Anime</title>
               <meta
@@ -45,9 +46,9 @@ function MyApp({ Component, pageProps }) {
               pauseOnHover
             />
             <Component {...pageProps} />
-          </Provider>
         </CommentsContextProvider>
       </UserContextProvider>
+        </SessionProvider>
     </ReduxProvider>
   );
 }

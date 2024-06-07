@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import { getSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 
 const UserContext = createContext({
@@ -15,13 +15,13 @@ export function UserContextProvider(props) {
   const [currentUser, setCurrentUser] = useState();
   const [currentSession, setCurrentSession] = useState();
   const [unreadMessages, setUnreadMessages] = useState();
+  const { data: session } = useSession();
 
   useEffect(() => {
     async function fetchData() {
-      const session = await getSession();
       if (session) {
         let user = await axios.get("/api/users/me");
-        user = user.data
+        user = user.data;
         // Chat Engine
 
         // if (user) {
@@ -34,9 +34,9 @@ export function UserContextProvider(props) {
         //         "User-Name": user.username,
         //         "User-Secret": localStorage.getItem("user-chat-profile-secret"),
         //       },
-        //     });       
+        //     });
         //     let unreadMessages = 0;
-  
+
         //     userChats.data.map((chat) => {
         //       const lastMessage = chat.last_message.id;
         //       const currentUser = chat.people.filter(
@@ -46,7 +46,7 @@ export function UserContextProvider(props) {
         //         unreadMessages = unreadMessages + 1;
         //       }
         //     });
-  
+
         //     setUnreadMessages(unreadMessages);
         //   } catch (error) {
         //     console.log(error)
@@ -58,7 +58,7 @@ export function UserContextProvider(props) {
       }
     }
     fetchData();
-  }, []);
+  }, [session]);
 
   async function addUserFavAnimeHandler(userData, favAnime) {
     let currentUserData = { ...userData };

@@ -1,6 +1,6 @@
 import { getCommentDate, handleLikeDislikeCounter,resizeCommentText } from "../../utils/utils";
 import { useState, useEffect, useContext } from "react";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import CommentsContext from "../../store/comment-context";
 import UserContext from "../../store/user-context";
 
@@ -18,7 +18,8 @@ function AnimeComments(props) {
       typeof window !== "undefined" ? window.innerWidth : ""
     );
 
-  const [session, loading] = useSession();
+  // const [session, loading] = useSession();
+  const { data: session , status} = useSession()
   const commentsCtx = useContext(CommentsContext);
   const userCtx = useContext(UserContext);
 

@@ -6,10 +6,10 @@ import Slidebar from "../../components/slidebar";
 import Footer from "../../components/footer";
 import AnimeInfo from "./../../components/anime/anime-page-info";
 import AnimeComments from "../../components/anime/anime-comments";
-import { getAnimeById} from "../../backend/helpers/mongodb-util";
+import { getAnimeById } from "../../backend/helpers/mongodb-util";
 import UserContext from "../../store/user-context";
 import { getAllModelDocuments } from "../../backend/helpers/mongoose-util";
-import { Comment } from './../../backend/models/comment';
+import { Comment } from "./../../backend/models/comment";
 import { getAllCollectionDocuments } from "../../backend/helpers/mongodb-util";
 
 function AnimePage(props) {

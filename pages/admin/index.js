@@ -6,7 +6,8 @@ import AdminPage from "nextjs-admin-table/dist/adminPage";
 import Head from "next/head";
 import axios from "axios";
 import UserContext from "../../store/user-context";
-import { getSession } from "next-auth/client";
+import { getServerSession } from "next-auth/next"
+import authOptions from "../../backend/helpers/nextAuthOption"
 
 import {
   getAllCollectionDocuments
@@ -446,7 +447,7 @@ function Admin(props) {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+  const session = await getServerSession(context.req, context.res, authOptions );
 
   const allAnimes = await getAllCollectionDocuments("animes", { title: 1 });
 

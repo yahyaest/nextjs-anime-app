@@ -1,7 +1,9 @@
 import Head from "next/head";
 import { useState, useRef } from "react";
 import { useRouter } from "next/router";
-import { getSession, signIn } from "next-auth/client";
+import { signIn } from "next-auth/react";
+import { getServerSession } from "next-auth/next";
+import authOptions from "../backend/helpers/nextAuthOption";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -55,21 +57,26 @@ function LoginPage() {
     const enteredPassword = passwordInputRef.current.value;
 
     if (isLogin) {
-      // log user in
-      const result = await signIn("credentials", {
-        redirect: false,
-        email: enteredEmail,
-        password: enteredPassword,
-      });
+      try {
+        // log user in
+        const result = await signIn("credentials", {
+          callbackUrl: process.env.PROD_URL || process.env.DEV_URL,
+          redirect: false,
+          email: enteredEmail,
+          password: enteredPassword,
+        });
 
-      if (result.error) {
-        toast.error(result.error);
-      }
+        if (result.error) {
+          toast.error(result.error);
+        }
 
-      if (!result.error) {
-        // set some auth state
-        localStorage.setItem("user-chat-profile-secret", enteredPassword);
-        router.replace("/");
+        if (!result.error) {
+          // set some auth state
+          localStorage.setItem("user-chat-profile-secret", enteredPassword);
+          router.replace("/");
+        }
+      } catch (error) {
+        console.log(error);
       }
     } else {
       try {
@@ -150,7 +157,7 @@ function LoginPage() {
                       autoFocus
                       ref={usernameInputRef}
                     ></input>
-                    <label forhtml="floatingInputUsername">Username</label>
+                    <label>Username</label>
                   </div>
                 )}
 
@@ -163,7 +170,7 @@ function LoginPage() {
                     required
                     ref={emailInputRef}
                   ></input>
-                  <label forhtml="floatingInputEmail">Email address</label>
+                  <label>Email address</label>
                 </div>
 
                 <hr />
@@ -177,7 +184,7 @@ function LoginPage() {
                     required
                     ref={passwordInputRef}
                   ></input>
-                  <label forhtml="floatingPassword">Password</label>
+                  <label>Password</label>
                 </div>
 
                 {!isLogin && (
@@ -190,9 +197,7 @@ function LoginPage() {
                       required
                       ref={confirmPasswordInputRef}
                     ></input>
-                    <label forhtml="floatingPasswordConfirm">
-                      Confirm Password
-                    </label>
+                    <label>Confirm Password</label>
                   </div>
                 )}
 
@@ -200,7 +205,7 @@ function LoginPage() {
 
                 {!isLogin && (
                   <div className="mb-3">
-                    <label forhtml="floatingProfileImage">Profile Image</label>
+                    <label>Profile Image</label>
                     <input
                       type="file"
                       className="form-control"
@@ -244,7 +249,12 @@ function LoginPage() {
                       text-uppercase
                     "
                     type="submit"
-                    onClick={() => signIn("google")}
+                    onClick={() =>
+                      signIn("google", {
+                        callbackUrl:
+                          process.env.PROD_URL || process.env.DEV_URL,
+                      })
+                    }
                   >
                     <i className="fa fa-google me-2"></i> Sign up with Google
                   </button>
@@ -258,7 +268,12 @@ function LoginPage() {
                       text-uppercase
                     "
                     type="submit"
-                    onClick={() => signIn("facebook")}
+                    onClick={() =>
+                      signIn("facebook", {
+                        callbackUrl:
+                          process.env.PROD_URL || process.env.DEV_URL,
+                      })
+                    }
                   >
                     <i className="fa fa-facebook-f me-2"></i> Sign up with
                     Facebook
@@ -273,7 +288,14 @@ function LoginPage() {
                       text-uppercase
                     "
                     type="submit"
-                    onClick={() => signIn("github")}
+                    onClick={() =>
+                      signIn("github"
+                      , {
+                        callbackUrl:
+                          process.env.PROD_URL || process.env.DEV_URL,
+                      }
+                      )
+                    }
                   >
                     <i className="fa fa-github me-2"></i> Sign up with Github
                   </button>
@@ -288,7 +310,7 @@ function LoginPage() {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+  const session = await getServerSession(context.req, context.res, authOptions);
 
   if (session) {
     return {

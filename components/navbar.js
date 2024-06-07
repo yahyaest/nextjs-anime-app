@@ -1,11 +1,12 @@
 import { Navbar, Nav } from "react-bootstrap";
-import Image from "next/image";
-import { useSession, signOut } from "next-auth/client";
+import Image from "next/legacy/image";
+import { useSession, signOut } from "next-auth/react";
 import { useContext } from "react";
 import UserContext from "../store/user-context";
 
 function NavbarComponent(props) {
-  const [session, loading] = useSession();
+  // const [session, loading] = useSession();
+  const { data: session , status} = useSession()
   const userCtx = useContext(UserContext);
 
   function handleLightMode() {
@@ -19,7 +20,8 @@ function NavbarComponent(props) {
   }
 
   function logoutHandler() {
-    signOut();
+    signOut()
+    // signOut({ callbackUrl: process.env.PROD_URL || process.env.DEV_URL });
     // localStorage.removeItem("user-chat-profile-secret");
 
   }
@@ -32,8 +34,8 @@ function NavbarComponent(props) {
             <Image
               src={"/images/anime-logo.png"}
               alt={"logo-image"}
-              width={900}
-              height={300}
+              width={90}
+              height={30}
             />
           </div>
         </Navbar.Brand>
@@ -76,7 +78,7 @@ function NavbarComponent(props) {
             )}
           </Nav> */}
           <Nav>
-            {!session && !loading && (
+            {!session && status !== "loading" && (
               <Nav.Link className="navbar-item" href="/login">
                 Login
               </Nav.Link>

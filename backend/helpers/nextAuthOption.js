@@ -1,15 +1,12 @@
-import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import GithubProvider from "next-auth/providers/github";
 import bcrypt from "bcrypt";
-import { connectDb } from "../../../backend/helpers/mongoose-util";
-import { User } from "../../../backend/models/user";
+import { connectDb } from "./mongoose-util";
+import { User } from "../models/user";
 
-export const authOptions = {};
-
-export default NextAuth({
+const authOptions = {
   session: { jwt: true },
   providers: [
     CredentialsProvider({
@@ -34,13 +31,10 @@ export default NextAuth({
           throw new Error("No user found!");
         }
 
-        // There is fetch issue with bycrypt ==> use plain password
-        // const validPassword = await bcrypt.compare(
-        //   credentials.password,
-        //   user.password
-        // );
-
-        const validPassword = credentials.password === user.password;
+        const validPassword = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
 
         if (!validPassword) {
           client.connection.close();
@@ -69,20 +63,10 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
-  // callbacks: {
-  //   async redirect(url, baseUrl) {
-  //     console.log("URL  : ", url);
-  //     console.log("BaseUrl : ", baseUrl);
-  //     url.url = process.env.PROD_URL || process.env.DEV_URL;
-  //     url.baseUrl = process.env.PROD_URL || process.env.DEV_URL;
-  //     baseUrl = process.env.PROD_URL || process.env.DEV_URL;
-  //     console.log("URL1  : ", url);
-  //     console.log("BaseUrl1 : ", baseUrl);
-  //     return process.env.PROD_URL || process.env.DEV_URL;
-  //   },
-  // },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
   },
-});
+};
+
+export default authOptions;

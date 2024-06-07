@@ -7,7 +7,8 @@ import {
   adminMiddleware,
   objectIdMiddleware,
 } from "../helpers/middlewares-util";
-import { getSession } from "next-auth/client";
+import { getServerSession } from "next-auth/next"
+import authOptions from "../helpers/nextAuthOption"
 
 export async function getUsers(req, res) {
   const isAuthenticated = await authMiddleware(req, res);
@@ -31,7 +32,7 @@ export async function getCurrentUser(req, res) {
   if (!isAuthenticated) {
     return res.status(401).json({ message: "Not authenticated!" });
   }
-  const session = await getSession({ req: req });
+  const session = await getServerSession(req, res, authOptions);
   const user = await User.findOne({ email: session.user.email }).select(
     "-password"
   );
@@ -82,9 +83,10 @@ export async function createUser(req, res) {
 
   user = new User(_.pick(req.body, ["username", "email", "password"]));
 
+  // There is fetch issue with bycrypt ==> use plain password
   // Password hashing //
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
+  // const salt = await bcrypt.genSalt(10);
+  // user.password = await bcrypt.hash(user.password, salt);
   // if (req.file) {
   //   user.avatar = req.file.filename; // used with multer file upload
   // }
@@ -150,7 +152,6 @@ export async function patchUser(req, res, id) {
   if (!isObjectId) {
     return res.status(404).json({ message: "Invalid ID!" });
   }
-
   const user = await User.findById(id);
   if (!user)
     return res

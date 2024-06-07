@@ -1,11 +1,12 @@
-import { getSession } from "next-auth/client";
+import { getServerSession } from "next-auth/next"
 import mongoose from "mongoose";
 import { User } from "../models/user";
+import authOptions from "./nextAuthOption"
 
 export async function authMiddleware(req, res) {
-  const session = await getSession({ req: req });
+  const session = await getServerSession(req, res, authOptions);
+  
   let isAuthenticated = true;
-
   if (session === null) {
     isAuthenticated = false;
     return isAuthenticated;
@@ -15,7 +16,7 @@ export async function authMiddleware(req, res) {
 }
 
 export async function adminMiddleware(req, res) {
-  const session = await getSession({ req: req });
+  const session = await getServerSession(req, res, authOptions);
 
   let isAdmin = true;
 
@@ -34,7 +35,7 @@ export async function adminMiddleware(req, res) {
 }
 
 export async function objectIdMiddleware(req, res) {
-  const session = await getSession({ req: req });
+  const session = await getServerSession(req, res, authOptions);
   let isObjectId = true;
 
   if (session === null) {

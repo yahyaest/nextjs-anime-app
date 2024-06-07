@@ -1,6 +1,6 @@
-import {useEffect, useState, useRef } from "react";
-import {useRouter } from "next/router";
-import { getSession, signIn } from "next-auth/client";
+import { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/router";
+import { useSession, signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 
 function LoginSection() {
@@ -8,15 +8,14 @@ function LoginSection() {
   const [session, setSession] = useState();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const { data: auth_session } = useSession();
 
- useEffect(() => {
-   async function fetchData() {
-     const session = await getSession();
-    setSession(session);
-
-   }
-   fetchData();
- }, []);
+  useEffect(() => {
+    async function fetchData() {
+      setSession(auth_session);
+    }
+    fetchData();
+  }, []);
 
   async function submitHandler(event) {
     event.preventDefault();
@@ -31,7 +30,9 @@ function LoginSection() {
       password: enteredPassword,
     });
 
-    if (result.error) { toast.error(result.error); }
+    if (result.error) {
+      toast.error(result.error);
+    }
 
     if (!result.error) {
       // set some auth state
@@ -39,7 +40,7 @@ function LoginSection() {
     }
   }
 
-  if(session) return null
+  if (session) return null;
   return (
     <section className="text-white">
       <div className="container col-xl-10 col-xxl-8 px-4 py-5">
