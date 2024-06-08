@@ -19,6 +19,7 @@ const withTM = require("next-transpile-modules")([
 
 module.exports = (phase) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
+    console.log("Development Mode");
     return {
       reactStrictMode: true,
       images: {
@@ -31,8 +32,11 @@ module.exports = (phase) => {
         ],
       },
       env: {
+        DEV_URL: "http://localhost:3000",
+        PROD_URL: "http://localhost:3000",
         NEXT_APP_API_URL: "http://localhost:3000/api",
         NEXT_APP_ROOT_URL: "http://localhost:3000",
+        NEXTAUTH_SECRET: "gA1DhrUS5WOD20XjptadhMTnqzHg-Bcmu6YLkSQk4SYkxfcI7R7UdV6cgm5bHHk3pet8GI-pyutZs7Kh51NL7g",
         NEXTAUTH_URL: "http://localhost:3000",
         GOOGLE_CLIENT_ID:
           "111284700249-rsk6ps62ndp0ql5koi6rkoijpf14d5kk.apps.googleusercontent.com",
@@ -55,6 +59,7 @@ module.exports = (phase) => {
   }
 
   // production
+  console.log("Production Mode");
   return {
     reactStrictMode: true,
     images: {
@@ -68,14 +73,18 @@ module.exports = (phase) => {
       ],
     },
     env: {
-      NEXT_APP_API_URL: "http://localhost:3000/api",
-      NEXT_APP_ROOT_URL: "http://localhost:3000",
-      NEXTAUTH_URL: "http://localhost:3000",
+      DEV_URL: "https://anime-app.yahyamachat.com/",
+      PROD_URL: "https://anime-app.yahyamachat.com/",
+      NEXT_APP_API_URL: "https://anime-app.yahyamachat.com/api",
+      NEXT_APP_ROOT_URL: "https://anime-app.yahyamachat.com/",
+      NEXTAUTH_SECRET: "gA1DhrUS5WOD20XjptadhMTnqzHg-Bcmu6YLkSQk4SYkxfcI7R7UdV6cgm5bHHk3pet8GI-pyutZs7Kh51NL7g",
+      NEXTAUTH_URL: "https://anime-app.yahyamachat.com/",
       GOOGLE_CLIENT_ID:
         "111284700249-rsk6ps62ndp0ql5koi6rkoijpf14d5kk.apps.googleusercontent.com",
       GOOGLE_CLIENT_SECRET: "NLgyP0_59rhyAzIb2Gi4Zl_x",
       FACEBOOK_CLIENT_ID: "1163848264098065",
       FACEBOOK_CLIENT_SECRET: "38aff095d144c3fe5ad049b7913965aa",
+      // https://github.com/settings/applications/1675712 || Homepage URL - Authorization callback URL  https://nextjs-anime-app-aaaqify4h-yahyaest.vercel.app/
       GITHUB_CLIENT_ID: "ef0a3c9d6d81236bb7b9",
       GITHUB_CLIENT_SECRET: "bae7976880c2310e3cb3e15bb96ea88094ccb92e",
       DB_USERNAME: "yahya",
