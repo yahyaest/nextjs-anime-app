@@ -72,3 +72,21 @@ admin> db.getUsers()
   ok: 1
 }
 admin> 
+
+# mongodb password test
+$> use admin
+$> db.auth("admin", passwordPrompt())   //admin is the user
+
+////
+test> use admin
+switched to db admin
+admin> db.auth("admin", passwordPrompt())
+Enter password
+**************{ ok: 1 }
+////
+
+// show collection documents
+db.collectionName.find()
+// drop collection
+db.collectionName.drop()
+

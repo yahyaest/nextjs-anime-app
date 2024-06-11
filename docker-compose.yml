@@ -9,8 +9,9 @@ services:
     stdin_open: true
     environment:
       NODE_ENV: production
+      NEXTAUTH_URL: http://localhost:3100
     ports:
-      - "3000:3000"
+      - "3100:3000"
     volumes:
       - .:/app
       - /app/node_modules

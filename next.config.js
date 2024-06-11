@@ -37,7 +37,7 @@ module.exports = (phase) => {
         NEXT_APP_API_URL: "http://localhost:3000/api",
         NEXT_APP_ROOT_URL: "http://localhost:3000",
         NEXTAUTH_SECRET: "gA1DhrUS5WOD20XjptadhMTnqzHg-Bcmu6YLkSQk4SYkxfcI7R7UdV6cgm5bHHk3pet8GI-pyutZs7Kh51NL7g",
-        NEXTAUTH_URL: "http://localhost:3000",
+        NEXTAUTH_URL: "http://localhost:3100",
         GOOGLE_CLIENT_ID:
           "111284700249-rsk6ps62ndp0ql5koi6rkoijpf14d5kk.apps.googleusercontent.com",
         GOOGLE_CLIENT_SECRET: "NLgyP0_59rhyAzIb2Gi4Zl_x",
